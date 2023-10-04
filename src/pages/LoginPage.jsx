@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const [err, setErr] = useState(null)
+  const navigator = useNavigate()
 
 const login = async (event) => {
   
@@ -14,11 +17,18 @@ const login = async (event) => {
   if (response.ok) {
     const {token} = await response.json()
     localStorage.setItem("token", token)
+    navigator("/dashboard")
+  } else {
+    event.target.reset()
+    setErr(true)
   }
 }
   return ( 
     <>
     <main className="bg-darkgreen text-white p-5 flex flex-col justify-center items-center h-screen">
+      {err &&
+      <p className="px-4 py-5 my-3 text-xl rounded bg-red-600"></p>
+      }
       <form onSubmit={login} className="w-4/12 flex flex-col gap-5">
         <div className="flex flex-col">
           <label htmlFor="email">Email:</label>
