@@ -1,10 +1,11 @@
-
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
 
   return ( 
     <main>
       <section className='bg-[url(../img/hero.jpg)] h-screen bg-no-repeat bg-cover relative'>
+        <Link to="/login" className="bg-darkgreen text-white px-5 py-2 hover:bg-highlight rounded-xl mt-5 absolute right-6 top-5">Let's Raid</Link>
         <div className="uppercase text-4xl text-white font-bold leading-loose absolute left-7 bottom-8">
           <h1 className="w-52 text-center">Plan your <span className="text-8xl text-highlight">Raid</span></h1>
         </div>
