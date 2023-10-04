@@ -2,8 +2,20 @@ import { Link } from "react-router-dom";
 
 const LoginPage = () => {
 
-const login = async (event) => {}
+const login = async (event) => {
+  
+  event.preventDefault()
 
+  const form = new FormData(event.target)
+  const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/api/auth/login", {
+    method: "POST",
+    body: form
+  })
+  if (response.ok) {
+    const {token} = await response.json()
+    localStorage.setItem("token", token)
+  }
+}
   return ( 
     <>
     <main className="bg-darkgreen text-white p-5 flex flex-col justify-center items-center h-screen">
